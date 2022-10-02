@@ -1,7 +1,7 @@
 {
   "name": "eleicoes2022",
   "version": "0.1.0",
-  "homepage": "https://carlostrevisan1.github.io/eleicoes2022",
+  "homepage": "https://carlostrevisan1.github.io/elei-es2022/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
