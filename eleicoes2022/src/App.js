@@ -1,22 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [cand, setCand] = useState();
+
+  const retrieveData = async () => {
+    const result = await fetch(
+      "https://resultados.tse.jus.br/oficial/ele2022/544/dados-simplificados/br/br-c0001-e000544-r.json"
+    );
+
+    const candRes = await result.json();
+    console.log("rodei");
+    setCand(candRes.cand);
+  };
+
+  const lula = cand ? cand[1] : "";
+  const bolso = cand ? cand[0] : "";
+
+  useEffect(() => {
+    setInterval(() => {
+      retrieveData();
+    }, 699);
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>LULA: "{lula?.pvap}%"</p>
+        <p>BOLSO: "{bolso?.pvap}%"</p>
       </header>
     </div>
   );
